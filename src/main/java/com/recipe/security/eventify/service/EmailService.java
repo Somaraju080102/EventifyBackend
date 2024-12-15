@@ -12,13 +12,14 @@ public class EmailService {
 	JavaMailSender javaMailSender;
 
 	public void sendVerificationCode(String to,String subject,String text) {
-		System.out.println(text);
+		System.out.println("Message"+" "+text+" "+subject+" "+to);
 		
 		SimpleMailMessage mailMessage=new SimpleMailMessage();
+		
 		mailMessage.setTo(to);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(text);
-		mailMessage.setFrom("eventnotificationss@gmail.com");
+		mailMessage.setFrom("somrajuindukuri080102@gmail.com");
 		
 		javaMailSender.send(mailMessage);
 		

@@ -15,6 +15,14 @@ public class UserPublicInfo {
 	private String userName;
 	private String userPassword;
 	private String userEmail;
+	private String userOtp;
+	
+	public String getUserOtp() {
+		return userOtp;
+	}
+	public void setUserOtp(String userOtp) {
+		this.userOtp = userOtp;
+	}
 	public Integer getId() {
 		return id;
 	}

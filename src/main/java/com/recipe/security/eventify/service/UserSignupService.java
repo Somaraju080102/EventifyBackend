@@ -11,8 +11,10 @@ import com.recipe.security.eventify.repo.UserSignupRepo;
 @Service
 public class UserSignupService{
 	
+		
 	@Autowired
 	UserSignupRepo signupRepo;
+	
 	
 	@Autowired
 	EmailService emailService;
@@ -29,22 +31,12 @@ public class UserSignupService{
 	
 	
 	
-	public void saveUserInfo(UserPublicInfo info) {
+	public void saveUserInfo(UserPublicInfo info ){
 		
-		String otp=generateOtp();
-		this.generatedOtp=otp;
-		this.otpEmail=info.getUserEmail();
-		this.otpTimestamp=System.currentTimeMillis();
+	
 		
 		
-		String subject="Your Otp Code";
 		
-		String text="Your OTP Code is :  "+generatedOtp;
-		
-		
-		emailService.sendVerificationCode(info.getUserEmail(), subject, text);
-		
-		System.out.println(text);
 		
 		signupRepo.save(info);
 		System.out.println("Db called");
@@ -52,14 +44,15 @@ public class UserSignupService{
 		
 		
 	}
-	public boolean validateOtp(String email,String otp) {
-        long expirationTime = 5 * 60 * 1000;  
-        if(System.currentTimeMillis()-otpTimestamp>expirationTime) {
-        	return false;
-        }
-        return email.equals(otpEmail)&&otp.equals(generatedOtp);
-
-	}
 	
+//	public boolean validateOtp(String email,String otp) {
+//        long expirationTime = 5 * 60 * 1000;  
+//        if(System.currentTimeMillis()-otpTimestamp>expirationTime) {
+//        	return false;
+//        }
+//        return email.equals(otpEmail)&&otp.equals(generatedOtp);
+//
+//	}
+//	
 
 }
